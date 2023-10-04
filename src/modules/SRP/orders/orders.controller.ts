@@ -1,7 +1,8 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
-import { OrdersService } from './orders.service';
-import { EmailsService } from '../emails/emails.service';
+import { Body, Controller, Post } from '@nestjs/common';
 import { IsNumber } from 'class-validator';
+import { AwsService } from 'src/aws/aws.service';
+import { EmailsService } from '../emails/emails.service';
+import { OrdersService } from './orders.service';
 
 class SubmitOrderDto {
   @IsNumber()
@@ -13,6 +14,7 @@ export class OrdersController {
   constructor(
     private ordersService: OrdersService,
     private emailsService: EmailsService,
+    private awsService: AwsService,
   ) {}
 
   @Post()
